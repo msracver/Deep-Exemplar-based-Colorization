@@ -39,55 +39,61 @@ For more results, please refer to our [Supplementary](http://www.dongdongchen.bi
 ### Build
 **Similarity Sub-net** is implemented in C++ combined with CUDA and requires compiling in Visual Studio as follows:
 - Build [Caffe](http://caffe.berkeleyvision.org/) at first. Just follow the tutorial [here](https://github.com/Microsoft/caffe).
-- Edit ```similarity_combo.vcxproj``` under ```windows\similarity_combo``` to make the CUDA version in it match yours.
+- Edit ```similarity_combo.vcxproj``` under ```similarity_subnet\windows\similarity_combo\``` to make the CUDA version in it match yours.
 - Open solution ```Caffe``` and add ```similarity_combo.vcxproj```.
 - Build project ```similarity_combo```.
-- (Optional) If you use *Deep Image Analogy*, please add ```deep_image_analogy.vcxproj``` under ```windows\deep_image_analogy``` and build it.
+- (Optional) If you use *Deep Image Analogy*, please add ```deep_image_analogy.vcxproj``` under ```similarity_subnet\windows\deep_image_analogy\``` and build it.
 
 ### Download Models
 You need to download models before running a demo.
-- Go to ```demo\models\similarity_subnet\vgg_19_gray_bn\``` folder and download:
-  - https://www.dropbox.com/s/mnsxsfv5non3e81/vgg19_bn_gray_ft_iter_150000.caffemodel?dl=0
-- Go to ```demo\models\colorization_subnet\``` folder and download:
-  - https://www.dropbox.com/s/ebtuwj7doteelia/example_net.pth?dl=0
-- (Optional) If you use *Deep Image Analogy*, please go to ```demo\models\deep_image_analogy\vgg19\``` folder and download:
-  - http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel
+- Go to ```demo\models\similarity_subnet\vgg_19_gray_bn\``` folder and download:  
+  https://www.dropbox.com/s/mnsxsfv5non3e81/vgg19_bn_gray_ft_iter_150000.caffemodel?dl=0
+- Go to ```demo\models\colorization_subnet\``` folder and download: 
+  https://www.dropbox.com/s/ebtuwj7doteelia/example_net.pth?dl=0
+- (Optional) If you use *Deep Image Analogy*, please go to ```demo\models\deep_image_analogy\vgg19\``` folder and download:  
+  http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel
 
 ### Demo
 We prepare an example under the folder ```demo\``` with:
 
-(1) Input data root folder ```example\``` including the 2 following parts:
+(1) Input data folder ```example\``` including two parts:
 - A folder ```input\``` with the input images (grayscale target images and color reference images) inside.
-- A file ```pairs.txt``` to specify a target, a reference and a flag (1 as default) as an example in each line, e.g., ```in1.jpg ref1.jpg 1```.
+- A file ```pairs.txt``` to specify a target, a reference and a flag (1 as default) as an example in each line, e.g., 
+  ```
+  in1.jpg ref1.jpg 1
+  in2.jpg ref2.jpg 1
+  ...
+  ```
 
-(2) Executable script ```run.bat``` including the three following commands:
-- (Optional) A command to generate bidirectional mapping functions using *Deep Image Analogy*. The format is:
-  - ```deep_image_analogy.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]```
-  
-    ```e.g., exe\deep_image_analogy.exe models\deep_image_analogy\ example\ 0 2 0```
-    
-  - If you use other algorithms to gerenate bidirectional mapping functions, please generate flow files referring to the format of those by *Deep Image Analogy* and put them to the folder ```example\flow\```.
+(2) Executable script ```run.bat``` including three commands:
+- (Optional) A command to generate bidirectional mapping functions using *Deep Image Analogy*:
+  ```
+  deep_image_analogy.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]
+  e.g., exe\deep_image_analogy.exe models\deep_image_analogy\ example\ 0 2 0
+  ```  
+  (Note if you use other algorithms for bidirectional mapping functions, please generate flow files referring to the format of those by *Deep Image Analogy* and put them to the folder ```example\flow\```.)
 
-- A command to generate the intermediate data for colorization. The format is:
-  - ```similarity_combo.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]```
-  
-    ```e.g., exe\similarity_combo.exe models\similarity_subnet\ example\ 0 2 0```
+- A command to generate similarity maps for colorization (**Similarity Subnet**):
+  ```
+  similarity_combo.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]
+  e.g., exe\similarity_combo.exe models\similarity_subnet\ example\ 0 2 0
+  ```
 
-- A command to do colorization with our pretrained model. The format is:
-  - ```python test.py --short_size [SHORT_EDGE_SIZE] --test_model [MODEL_FILE] --data_root [INPUT_ROOT_DIR] --out_dir [OUTPUT_DIR] --gpu_id [GPU_ID]```
-  
-    ```e.g., python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0```
+- A command to do colorization with our pretrained model (**Colorization Subnet**):
+  ```
+  python test.py --short_size [SHORT_EDGE_SIZE] --test_model [MODEL_FILE] --data_root [INPUT_ROOT_DIR] --out_dir [OUTPUT_DIR] --gpu_id [GPU_ID]
+  e.g., python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0
+  ```
 
 ### Run
-We provide pre-built executable files in folder ```demo\exe\```, please try it.
+We provide pre-built executable files in folder ```demo\exe\```, please try them.
 
 ### Tips
 Our test input images are resized to w x h (min(w, h)=256) considering the cost of computing bidirectional mapping functions by *Deep Image Analogy*. But we also support higher resolution input images.
 
 
 ## Citation
-If you find **Deep Exemplar-based Colorization** helpful for your research, please cite:
-
+If you find **Deep Exemplar-based Colorization** helpful for your research, please consider citing:
 ```
 @article{he2018deep,
   title={Deep exemplar-based colorization},
