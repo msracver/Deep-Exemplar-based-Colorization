@@ -1,3 +1,7 @@
+similarity_subnet/* linguist-vendored
+
+similarity_subnet/windows/similarity_combo/source/* linguist-vendored=false
+
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
