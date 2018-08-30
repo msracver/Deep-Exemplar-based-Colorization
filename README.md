@@ -1,6 +1,6 @@
 # Deep Exemplar-based Colorization
 
-This is the implementation of paper **Deep Exemplar-based Colorization** by Mingming He*, [Dongdong Chen*](http://www.dongdongchen.bid/),
+This is the implementation of paper [**Deep Exemplar-based Colorization**](https://arxiv.org/abs/1807.06587) by Mingming He*, [Dongdong Chen*](http://www.dongdongchen.bid/),
 [Jing Liao](https://liaojing.github.io/html/index.html), [Pedro V. Sander](http://www.cse.ust.hk/~psander/) and 
 [Lu Yuan](http://www.lyuan.org/) in ACM Transactions on Graphics (SIGGRAPH 2018) (*indicates equal contribution).
 
