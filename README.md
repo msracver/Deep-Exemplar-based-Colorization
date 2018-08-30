@@ -10,7 +10,7 @@ This is the implementation of paper [**Deep Exemplar-based Colorization**](https
 **Deep Exemplar-based Colorization** is the ﬁrst deep learning approach for exemplar-based local colorization. 
 Given a reference color image, our convolutional neural network directly maps a grayscale image to an output colorized image.
 
-![image](https://github.com/cddlyf/deep_example_colorization/blob/master/demo/data/representative.jpg)
+![image](https://github.com/msracver/Deep-Exemplar-based-Colorization/blob/master/demo/data/representative.jpg)
 
 The proposed network consists of two sub-networks, **Similarity Sub-net** which computes the semantic similarities between 
 the reference and the target, and **Colorization Sub-net** which selects, propagates and predicts the chrominances channels of the target.
