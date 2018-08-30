@@ -58,26 +58,25 @@ We prepare an example under the folder ```demo\``` with:
 
 (1) Input data root folder ```example\``` including the 2 following parts:
 - A folder ```input\``` with the input images (grayscale target images and color reference images) inside.
-- A file ```pairs.txt``` to specify a target, a reference and a flag (1 as default) as an example in each line, e.g.,
-  - ```in1.jpg ref1.jpg 1```
+- A file ```pairs.txt``` to specify a target, a reference and a flag (1 as default) as an example in each line, e.g., ```in1.jpg ref1.jpg 1```.
 
 (2) Executable script ```run.bat``` including the three following commands:
 - (Optional) A command to generate bidirectional mapping functions using *Deep Image Analogy*. The format is:
-  - ```deep_image_analogy.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]
-    
-    e.g., exe\deep_image_analogy.exe models\deep_image_analogy\ example\ 0 2 0```
+  - ```deep_image_analogy.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]```
+  
+    ```e.g., exe\deep_image_analogy.exe models\deep_image_analogy\ example\ 0 2 0```
     
   - If you use other algorithms to gerenate bidirectional mapping functions, please generate flow files referring to the format of those by *Deep Image Analogy* and put them to the folder ```example\flow\```.
 
 - A command to generate the intermediate data for colorization. The format is:
-  - ```similarity_combo.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]
+  - ```similarity_combo.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]```
   
-    e.g., exe\similarity_combo.exe models\similarity_subnet\ example\ 0 2 0```
+    ```e.g., exe\similarity_combo.exe models\similarity_subnet\ example\ 0 2 0```
 
 - A command to do colorization with our pretrained model. The format is:
-  - ```python test.py --short_size [SHORT_EDGE_SIZE] --test_model [MODEL_FILE] --data_root [INPUT_ROOT_DIR] --out_dir [OUTPUT_DIR] --gpu_id [GPU_ID]
-    
-    e.g., python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0```
+  - ```python test.py --short_size [SHORT_EDGE_SIZE] --test_model [MODEL_FILE] --data_root [INPUT_ROOT_DIR] --out_dir [OUTPUT_DIR] --gpu_id [GPU_ID]```
+  
+    ```e.g., python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0```
 
 ### Run
 We provide pre-built executable files in folder ```demo\exe\```, please try it.
