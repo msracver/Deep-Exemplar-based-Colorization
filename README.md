@@ -15,7 +15,7 @@ Given a reference color image, our convolutional neural network directly maps a 
 The proposed network consists of two sub-networks, **Similarity Sub-net** which computes the semantic similarities between 
 the reference and the target, and **Colorization Sub-net** which selects, propagates and predicts the chrominances channels of the target.
 
-The input includes a grayscale target image, a color reference image and bidirectional mapping functions. We use [*Deep Image Analogy*](https://github.com/msracver/Deep-Image-Analogy) as default to generate birdirectional mapping functions. It is applicable to replace with other dense correspondence estimation algorithms.
+The input includes a grayscale target image, a color reference image and bidirectional mapping functions. We use [*Deep Image Analogy*](https://github.com/msracver/Deep-Image-Analogy) as default to generate bidirectional mapping functions. It is applicable to replace with other dense correspondence estimation algorithms.
 
 For more results, please refer to our [Supplementary](http://www.dongdongchen.bid/supp/deep_exam_colorization/index.html).
 
@@ -39,7 +39,7 @@ For more results, please refer to our [Supplementary](http://www.dongdongchen.bi
 ### Build
 **Similarity Sub-net** is implemented in C++ combined with CUDA and requires compiling in Visual Studio as follows:
 - Build [Caffe](http://caffe.berkeleyvision.org/) at first. Just follow the tutorial [here](https://github.com/Microsoft/caffe).
-- Edit ```similarity_combo.vcxproj``` under ```windows\similarity_combo``` to make the CUDA version in it match yours .
+- Edit ```similarity_combo.vcxproj``` under ```windows\similarity_combo``` to make the CUDA version in it match yours.
 - Open solution ```Caffe``` and add ```similarity_combo.vcxproj```.
 - Build project ```similarity_combo```.
 - (Optional) If you use *Deep Image Analogy*, please add ```deep_image_analogy.vcxproj``` under ```windows\deep_image_analogy``` and build it.
@@ -74,14 +74,14 @@ We prepare an example under the folder ```demo\``` with:
   - e.g., ```python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0```
 
 ### Run
-We provide a pre-built executable files in folder ```demo\exe\```, please try it.
+We provide pre-built executable files in folder ```demo\exe\```, please try it.
 
 ### Tips
 Our test input images are resized to w x h (min(w, h)=256) considering the cost of computing bidirectional mapping functions by *Deep Image Analogy*. But we also support higher resolution input images.
 
 
 ## Citation
-If you find **Deep Exemplar-based Colorizationy** helpful for your research, please cite:
+If you find **Deep Exemplar-based Colorization** helpful for your research, please cite:
 
 ```
 @article{he2018deep,
