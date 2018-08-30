@@ -1,0 +1,5 @@
+in1.JPEG ref1.JPEG 1
+in2.JPEG ref2.JPEG 1
+in3.JPEG ref3.JPEG 1
+in4.JPEG ref4.JPEG 1
+in5.JPEG ref5.JPEG 1
