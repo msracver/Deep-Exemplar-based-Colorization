@@ -17,6 +17,8 @@ the reference and the target, and **Colorization Sub-net** which selects, propag
 
 The input includes a grayscale target image, a color reference image and bidirectional mapping functions. We use [*Deep Image Analogy*](https://github.com/msracver/Deep-Image-Analogy) as default to generate bidirectional mapping functions. It is applicable to replace with other dense correspondence estimation algorithms.
 
+The code of the part **Color Reference Recommendation** is now released. Please refere to [Gray-Image-Retrieval](https://github.com/hmmlillian/Gray-Image-Retrieval) for more details.
+
 For more results, please refer to our [Supplementary](http://www.dongdongchen.bid/supp/deep_exam_colorization/index.html).
 
 The code of the part **Color Reference Recommendation** is now released. Please refere to [Gray-Image-Retrieval](https://github.com/hmmlillian/Gray-Image-Retrieval) for more details.
