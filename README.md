@@ -88,6 +88,66 @@ We prepare an example under the folder ```demo\``` with:
   python test.py --short_size [SHORT_EDGE_SIZE] --test_model [MODEL_FILE] --data_root [INPUT_ROOT_DIR] --out_dir [OUTPUT_DIR] --gpu_id [GPU_ID]
   e.g., python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0
   ```
+### Demo for Linux / Docker
+#### Building the docker
+```
+docker build -t deep-colorization -f Dockerfile .
+```
+
+#### Before running
+If you want to run the provided demo
+
+This section requires nvidia-docker (install instruction available here :[https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0))
+
+#### Running the docker for the demo
+```
+ nvidia-docker run -it --ipc=host deep-colorization
+```
+
+#### Running the demo
+once in the Docker
+```
+(torch) root@84ccb98c1b2e:/src/app# ls
+colorization_subnet  demo  requirements.txt  similarity_subnet
+(torch) root@84ccb98c1b2e:/src/app# cd demo/
+(torch) root@84ccb98c1b2e:/src/app/demo# ls
+data  example  exe  models  run.bat  run.sh run-custom.sh
+(torch) root@84ccb98c1b2e:/src/app/demo# ./run.sh
+```
+
+#### Inputs
+inputs look like:
+```
+(torch) root@3a808ffe15a4:/src/app/demo/example/input# ls
+in1.jpg  in2.JPEG  ref1.jpg  ref2.JPEG
+```
+with in*.jpg being the original images to colorize and ref*.jpg the colorized image to transfer from
+
+#### Outputs
+outputs will be place under the /src/app/demo/example/res folder
+
+```
+(torch) root@3a808ffe15a4:/src/app/demo/example/res# ls
+in1_ref1.png  in2_ref2.png
+```
+
+#### Running the demo on your local images
+If you want to run on your custom local images
+```
+nvidia-docker run -it --ipc=host -v /your/local/path/to/images:/src/app/custom-examples deep-colorization
+```
+
+Once in the docker
+```
+# /src/app/demo/run-custom.sh
+```
+
+Or directly 
+```
+nvidia-docker run -it --ipc=host -v /your/local/path/to/images:/src/app/custom-examples deep-colorization /src/app/demo/run-custom.sh
+```
+
+results will be placed on your local machine under /your/local/path/to/images/res
 
 ### Run
 We provide pre-built executable files in folder ```demo\exe\```, please try them.

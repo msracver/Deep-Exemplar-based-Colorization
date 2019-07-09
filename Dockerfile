@@ -1,4 +1,6 @@
-FORM nvcr.io/nvidia/pytorch:19.06-py3
+FROM nvcr.io/nvidia/pytorch:19.06-py3
+
+RUN apt-get update -y
 
 RUN curl -LO http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
 
@@ -10,21 +12,25 @@ ENV PATH=/miniconda/bin:${PATH}
 
 RUN conda update -y conda
 
-RUN conda install opencv
+RUN conda create -n torch python=3.6 -y
 
-RUN conda install -c pytorch pytorch
+RUN echo "source activate torch" > ~/.bashrc
 
-RUN conda install -c pytorch torchvision
+ENV PATH /opt/conda/envs/env/bin:$PATH
 
-RUN conda install opencv
 
-WORKDIR /src
+RUN mkdir -p /src/app
+WORKDIR /src/app
 
-ADD colorization_subnet /src/
+ADD requirements.txt /src/app/requirements.txt
+RUN source activate torch && conda install --file requirements.txt
+ADD colorization_subnet /src/app/colorization_subnet
 
-ADD demo /src/
+ADD demo /src/app/demo
 
-ADD similarity_subnet /src/
+ADD similarity_subnet /src/app/similarity_subnet
 
-RUN wget -O /src/demo/models/colorization_subnet/example_net.pth http://pretrained-models.auth-18b62333a540498882ff446ab602528b.storage.gra5.cloud.ovh.net/image/exemplar-colorization/example_net.pth
+RUN mkdir -p /src/app/demo/models/colorization_subnet
+
+RUN wget -O /src/app/demo/models/colorization_subnet/example_net.pth http://pretrained-models.auth-18b62333a540498882ff446ab602528b.storage.gra5.cloud.ovh.net/image/exemplar-colorization/example_net.pth
 
