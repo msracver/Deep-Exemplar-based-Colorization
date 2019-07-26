@@ -19,6 +19,8 @@ The input includes a grayscale target image, a color reference image and bidirec
 
 For more results, please refer to our [Supplementary](http://www.dongdongchen.bid/supp/deep_exam_colorization/index.html).
 
+The code of the part **Color Reference Recommendation** is now released. Please refere to [Gray-Image-Retrieval](https://github.com/hmmlillian/Gray-Image-Retrieval) for more details.
+
 
 ## License
 
