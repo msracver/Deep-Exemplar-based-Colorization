@@ -51,9 +51,9 @@ The code of the part **Color Reference Recommendation** is now released. Please 
 ### Download Models
 You need to download models before running a demo.
 - Go to ```demo\models\similarity_subnet\vgg_19_gray_bn\``` folder and download:  
-  https://www.dropbox.com/s/mnsxsfv5non3e81/vgg19_bn_gray_ft_iter_150000.caffemodel?dl=0
+  https://www.dropbox.com/s/liz78q1lf9bc57s/vgg19_bn_gray_ft_iter_150000.caffemodel?dl=0
 - Go to ```demo\models\colorization_subnet\``` folder and download: 
-  https://www.dropbox.com/s/ebtuwj7doteelia/example_net.pth?dl=0
+  https://www.dropbox.com/s/rg6qi5iz3sj7cnc/example_net.pth?dl=0
 - (Optional) If you use *Deep Image Analogy*, please go to ```demo\models\deep_image_analogy\vgg19\``` folder and download:  
   http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel
 
