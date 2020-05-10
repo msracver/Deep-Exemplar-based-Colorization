@@ -58,14 +58,13 @@ root@84ccb98c1b2e:/src/app# ls
 colorization_subnet  demo  requirements.txt  similarity_subnet
 root@84ccb98c1b2e:/src/app# cd demo/
 root@84ccb98c1b2e:/src/app/demo# ls
-data  example  exe  models  run.sh
+data  example models  run.sh run-custom.sh
 root@84ccb98c1b2e:/src/app/demo# ./run.sh
-```
 
 #### Inputs
 Inputs look like:
 ```
-(torch) root@3a808ffe15a4:/src/app/demo/example/input# ls
+root@3a808ffe15a4:/src/app/demo/example/input# ls
 in1.jpg  in2.JPEG  ref1.jpg  ref2.JPEG
 ```
 with in*.jpg being the original images to colorize and ref*.jpg the colorized image to transfer from.
@@ -74,7 +73,7 @@ with in*.jpg being the original images to colorize and ref*.jpg the colorized im
 Outputs will be place under the /src/app/demo/example/res folder
 
 ```
-(torch) root@3a808ffe15a4:/src/app/demo/example/res# ls
+root@3a808ffe15a4:/src/app/demo/example/res# ls
 in1_ref1.png  in2_ref2.png
 ```
 
@@ -86,7 +85,7 @@ docker run -it --ipc=host -v /your/local/path/to/images:/src/app/custom_example 
 
 Once in the docker
 ```
-# /src/app/demo/run-custom.sh
+/src/app/demo/run-custom.sh
 ```
 
 ## Citation
