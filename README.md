@@ -60,6 +60,7 @@ root@84ccb98c1b2e:/src/app# cd demo/
 root@84ccb98c1b2e:/src/app/demo# ls
 data  example models  run.sh run-custom.sh
 root@84ccb98c1b2e:/src/app/demo# ./run.sh
+```
 
 #### Inputs
 Inputs look like:
