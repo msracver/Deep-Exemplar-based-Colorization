@@ -1,8 +1,0 @@
-﻿Build started 8/24/2018 5:03:57 PM.
-     1>Project "D:\v-donche\siggraph18\colorization_demo\github\Similarity_SubNet\windows\libcaffe\libcaffe.vcxproj" on node 2 (Build target(s)).
-     1>D:\v-donche\siggraph18\colorization_demo\github\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.targets(768,5): error MSB4062: The "NuGetPackageOverlay" task could not be loaded from the assembly D:\v-donche\siggraph18\colorization_demo\github\NugetPackages\OpenCV.2.4.10\build\native\\private\coapp.NuGetNativeMSBuildTasks.dll. Could not load file or assembly 'file:///D:\v-donche\siggraph18\colorization_demo\github\NugetPackages\OpenCV.2.4.10\build\native\private\coapp.NuGetNativeMSBuildTasks.dll' or one of its dependencies. The process cannot access the file because it is being used by another process. (Exception from HRESULT: 0x80070020) Confirm that the <UsingTask> declaration is correct, that the assembly and all its dependencies are available, and that the task contains a public class that implements Microsoft.Build.Framework.ITask.
-     1>Done Building Project "D:\v-donche\siggraph18\colorization_demo\github\Similarity_SubNet\windows\libcaffe\libcaffe.vcxproj" (Build target(s)) -- FAILED.
-
-Build FAILED.
-
-Time Elapsed 00:00:00.01

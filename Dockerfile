@@ -1,36 +1,24 @@
-FROM nvcr.io/nvidia/pytorch:19.06-py3
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
-RUN apt-get update -y
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN curl -LO http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+RUN apt-get update -y && apt-get install -y curl \
+        && apt-get install -y libeigen3-dev
 
-RUN bash Miniconda-latest-Linux-x86_64.sh -p /miniconda -b
+RUN apt-get install -y caffe-cuda libcaffe-cuda-dev python3-opencv
 
-RUN rm Miniconda-latest-Linux-x86_64.sh
+ADD . /src/app
 
-ENV PATH=/miniconda/bin:${PATH}
+WORKDIR /src/app/similarity_subnet
 
-RUN conda update -y conda
+RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev libgflags-dev
 
-RUN conda create -n torch python=3.6 -y
+RUN apt-get install -y libgoogle-glog-dev libprotobuf-dev libopenblas-dev libopencv-dev
 
-RUN echo "source activate torch" > ~/.bashrc
+RUN /bin/bash scripts/make_binaries.sh
 
-ENV PATH /opt/conda/envs/env/bin:$PATH
+RUN echo "Downloading Weight Files..." && /bin/bash scripts/download_weights.sh
 
-
-RUN mkdir -p /src/app
 WORKDIR /src/app
 
-ADD requirements.txt /src/app/requirements.txt
-RUN source activate torch && conda install --file requirements.txt
-ADD colorization_subnet /src/app/colorization_subnet
-
-ADD demo /src/app/demo
-
-ADD similarity_subnet /src/app/similarity_subnet
-
-RUN mkdir -p /src/app/demo/models/colorization_subnet
-
-RUN wget -O /src/app/demo/models/colorization_subnet/example_net.pth http://pretrained-models.auth-18b62333a540498882ff446ab602528b.storage.gra5.cloud.ovh.net/image/exemplar-colorization/example_net.pth
-
+RUN apt-get install -y python3-pip && pip3 install -r requirements.txt

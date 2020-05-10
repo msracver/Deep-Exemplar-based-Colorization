@@ -1,6 +1,4 @@
-numpy
-pillow
-pytorch
+torch
 torchvision
 scikit-image
-opencv
+opencv-python
