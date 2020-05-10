@@ -31,7 +31,7 @@ The code of the part **Color Reference Recommendation** is now released. Please 
 © Microsoft, 2017. Licensed under a MIT license.
 
 
-## Linux Support (By [jqueguiner](https://github.com/jqueguiner)(Colorization Subnet), [ncianeo](https://github.com/ncianeo) (Similarity Combo))
+## Linux Support (By [jqueguiner](https://github.com/jqueguiner)(Colorization Subnet), [ncianeo](https://github.com/ncianeo) (Similarity Combo and Deep Image Analogy))
 
 ### Demo for Linux / Docker
 
