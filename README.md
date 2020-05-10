@@ -48,7 +48,7 @@ Then, setup [nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) 
 
 #### Running the docker for the demo
 ```
-docker run -it --ipc=host deep-colorization
+docker run -it --ipc=host --gpus=all deep-colorization
 ```
 
 #### Running the demo
