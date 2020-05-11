@@ -1,5 +1,9 @@
 #!/bin/bash
 
+mkdir -p example/flow
+
+mkdir -p example/combo_new
+
 bin/deep_image_analogy models/deep_image_analogy/ example/ 0 2 0
 
 bin/similarity_combo models/similarity_subnet/ example/ 0 2 0
