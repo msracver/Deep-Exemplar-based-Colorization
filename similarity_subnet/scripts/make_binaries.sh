@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p /src/app/demo/bin
+
 # Make Similarity Combo
 SOURCE=/src/app/similarity_subnet/linux/similarity_combo/source
 
