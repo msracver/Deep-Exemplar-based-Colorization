@@ -37,6 +37,10 @@ int ComputeCombo(int argc, char** argv)
 	string inputDir = rootDir + "/input/";
 	string outputDir_flow = rootDir + "/flow/";
 	string outputDir_combo = rootDir + "/combo_new/";
+	if (!boost::filesystem::exists(outputDir_combo))
+	{
+		boost::filesystem::create_directory(outputDir_combo);
+	}
 
 	string model_file = "/vgg_19_gray_bn/deploy.prototxt";
 	string trained_file = "/vgg_19_gray_bn/vgg19_bn_gray_ft_iter_150000.caffemodel";

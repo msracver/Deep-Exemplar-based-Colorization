@@ -1,5 +1,6 @@
 #include "DeepAnalogy.cuh"
 #include "Classifier.h"
+#include <boost/filesystem.hpp>
 
 void run_flow(int argc, char** argv)
 {
@@ -35,7 +36,12 @@ void run_flow(int argc, char** argv)
 	dp.SetGPU(gid);
 
 	string inputDir = rootDir + "/input" + postfix + "/";
-	string outputDir_flow = rootDir + "/flow" + postfix + "/";\
+	string outputDir_flow = rootDir + "/flow" + postfix + "/";
+
+	if (!boost::filesystem::exists(outputDir_flow))
+	{
+		boost::filesystem::create_directory(outputDir_flow);
+	}
 
 	::google::InitGoogleLogging("deepanalogy");
 

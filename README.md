@@ -58,7 +58,7 @@ root@84ccb98c1b2e:/src/app# ls
 colorization_subnet  demo  requirements.txt  similarity_subnet
 root@84ccb98c1b2e:/src/app# cd demo/
 root@84ccb98c1b2e:/src/app/demo# ls
-data  example models  run.sh run-custom.sh
+data  example models  run.sh
 root@84ccb98c1b2e:/src/app/demo# ./run.sh
 ```
 
@@ -86,7 +86,7 @@ docker run -it --ipc=host -v /your/local/path/to/images:/src/app/custom_example 
 
 Once in the docker
 ```
-/src/app/demo/run-custom.sh
+/src/app/demo/run.sh /src/app/custom_example
 ```
 
 ## Citation
