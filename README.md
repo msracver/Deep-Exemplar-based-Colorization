@@ -23,78 +23,71 @@ For more results, please refer to our [Supplementary](http://www.dongdongchen.bi
 
 The code of the part **Color Reference Recommendation** is now released. Please refere to [Gray-Image-Retrieval](https://github.com/hmmlillian/Gray-Image-Retrieval) for more details.
 
+(**Update**) Many thanks to [jqueguiner](https://github.com/jqueguiner) for adding support for Docker on Linux.
+
 
 ## License
 
 © Microsoft, 2017. Licensed under a MIT license.
 
 
-## Getting Started
+## Linux Support (By [jqueguiner](https://github.com/jqueguiner)(Colorization Subnet), [ncianeo](https://github.com/ncianeo) (Similarity Combo and Deep Image Analogy))
 
-### Prerequisites
-- **Similarity Sub-net**: 
-  - Windows (64bit)
-  - NVIDIA GPU (CUDA 8.0 & CuDNN 5)
-  - Visual Studio 2013
+### Demo for Linux / Docker
 
-- **Colorization Sub-net**:
-  - Pytorch & the 3rd party Python libraries (OpenCV, scikit-learn and scikit-image)
+#### Building the docker
+```
+docker build -t deep-colorization -f Dockerfile .
+```
 
-### Build
-**Similarity Sub-net** is implemented in C++ combined with CUDA and requires compiling in Visual Studio as follows:
-- Build [Caffe](http://caffe.berkeleyvision.org/) at first. Just follow the tutorial [here](https://github.com/Microsoft/caffe).
-- Edit ```similarity_combo.vcxproj``` under ```similarity_subnet\windows\similarity_combo\``` to make the CUDA version in it match yours.
-- Open solution ```Caffe``` and add ```similarity_combo.vcxproj```.
-- Build project ```similarity_combo```.
-- (Optional) If you use *Deep Image Analogy*, please add ```deep_image_analogy.vcxproj``` under ```similarity_subnet\windows\deep_image_analogy\``` and build it.
+#### Before running
+If you want to run the provided demo:
 
-### Download Models
-You need to download models before running a demo.
-- Go to ```demo\models\similarity_subnet\vgg_19_gray_bn\``` folder and download:  
-  https://www.dropbox.com/s/liz78q1lf9bc57s/vgg19_bn_gray_ft_iter_150000.caffemodel?dl=0
-- Go to ```demo\models\colorization_subnet\``` folder and download: 
-  https://www.dropbox.com/s/rg6qi5iz3sj7cnc/example_net.pth?dl=0
-- (Optional) If you use *Deep Image Analogy*, please go to ```demo\models\deep_image_analogy\vgg19\``` folder and download:  
-  http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel
+This section requires docker version >= 19.03.
+Then, setup [nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) to use cuda support.
 
-### Demo
-We prepare an example under the folder ```demo\``` with:
+#### Running the docker for the demo
+```
+docker run -it --ipc=host --gpus=all deep-colorization
+```
 
-(1) Input data folder ```example\``` including two parts:
-- A folder ```input\``` with the input images (grayscale target images and color reference images) inside.
-- A file ```pairs.txt``` to specify a target, a reference and a flag (1 as default) as an example in each line, e.g., 
-  ```
-  in1.jpg ref1.jpg 1
-  in2.jpg ref2.jpg 1
-  ...
-  ```
+#### Running the demo
+Once in the Docker
+```
+root@84ccb98c1b2e:/src/app# ls
+colorization_subnet  demo  requirements.txt  similarity_subnet
+root@84ccb98c1b2e:/src/app# cd demo/
+root@84ccb98c1b2e:/src/app/demo# ls
+data  example models  run.sh
+root@84ccb98c1b2e:/src/app/demo# ./run.sh
+```
 
-(2) Executable script ```run.bat``` including three commands:
-- (Optional) A command to generate bidirectional mapping functions using *Deep Image Analogy*:
-  ```
-  deep_image_analogy.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]
-  e.g., exe\deep_image_analogy.exe models\deep_image_analogy\ example\ 0 2 0
-  ```  
-  (Note if you use other algorithms for bidirectional mapping functions, please generate flow files referring to the format of those by *Deep Image Analogy* and put them to the folder ```example\flow\```.)
+#### Inputs
+Inputs look like:
+```
+root@3a808ffe15a4:/src/app/demo/example/input# ls
+in1.jpg  in2.JPEG  ref1.jpg  ref2.JPEG
+```
+with in*.jpg being the original images to colorize and ref*.jpg the colorized image to transfer from.
 
-- A command to generate similarity maps for colorization (**Similarity Subnet**):
-  ```
-  similarity_combo.exe [MODEL_DIR] [INPUT_ROOT_DIR] [START_LINE_ID] [END_LINE_ID] [GPU_ID]
-  e.g., exe\similarity_combo.exe models\similarity_subnet\ example\ 0 2 0
-  ```
+#### Outputs
+Outputs will be place under the /src/app/demo/example/res folder
 
-- A command to do colorization with our pretrained model (**Colorization Subnet**):
-  ```
-  python test.py --short_size [SHORT_EDGE_SIZE] --test_model [MODEL_FILE] --data_root [INPUT_ROOT_DIR] --out_dir [OUTPUT_DIR] --gpu_id [GPU_ID]
-  e.g., python ..\colorization_subnet\test.py --short_size 256 --test_model models\colorization_subnet\example_net.pth --data_root example\ --out_dir example\res\ --gpu_id 0
-  ```
+```
+root@3a808ffe15a4:/src/app/demo/example/res# ls
+in1_ref1.png  in2_ref2.png
+```
 
-### Run
-We provide pre-built executable files in folder ```demo\exe\```, please try them.
+#### Running the demo on your local images
+If you want to run on your custom local images,
+```
+docker run -it --ipc=host -v /your/local/path/to/images:/src/app/custom_example deep-colorization
+```
 
-### Tips
-Our test input images are resized to w x h (min(w, h)=256) considering the cost of computing bidirectional mapping functions by *Deep Image Analogy*. But we also support higher resolution input images.
-
+Once in the docker
+```
+/src/app/demo/run.sh /src/app/custom_example
+```
 
 ## Citation
 If you find **Deep Exemplar-based Colorization** helpful for your research, please consider citing:

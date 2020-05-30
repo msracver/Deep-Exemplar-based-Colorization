@@ -1,9 +1,0 @@
-﻿Build started 8/24/2018 4:58:18 PM.
-     1>Project "D:\v-donche\siggraph18\colorization_demo\github\Similarity_SubNet\windows\matcaffe\matcaffe.vcxproj" on node 31 (Rebuild target(s)).
-     1>SkipBuild:
-         Skipping project matcaffe, Matlab support is not enabled in CommonSettings.props.
-     1>Done Building Project "D:\v-donche\siggraph18\colorization_demo\github\Similarity_SubNet\windows\matcaffe\matcaffe.vcxproj" (Rebuild target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.23
