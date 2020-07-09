@@ -21,7 +21,7 @@ The code of the part **Color Reference Recommendation** is now released. Please 
 
 For more results, please refer to our [Supplementary](http://www.dongdongchen.bid/supp/deep_exam_colorization/index.html).
 
-The code of the part **Color Reference Recommendation** is now released. Please refere to [Gray-Image-Retrieval](https://github.com/hmmlillian/Gray-Image-Retrieval) for more details.
+(Update) If you would to compile on Linux, please try this repository: https://github.com/ncianeo/Deep-Exemplar-based-Colorization/tree/linux-docker-cv-caffe-build, thank @ncianeo for the [transfer](https://github.com/msracver/Deep-Exemplar-based-Colorization/issues/8).
 
 
 ## License
